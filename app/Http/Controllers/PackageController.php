@@ -12,5 +12,5 @@ class PackageController extends Controller
         return view("package.show-all", compact("packages"));
     }
 
-   
+
 }

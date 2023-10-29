@@ -9,7 +9,6 @@ use App\Models\PackageStatus;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
-
 class UserController extends Controller
 {
     public function showPackage($id)
@@ -30,6 +29,7 @@ class UserController extends Controller
                 FROM package_statuses WHERE ps.package_id = :id);", [$id]);
         return view("user.show-package", compact("packages"));
     }
+
     public function login() {
         return view("user.login");
     }
@@ -69,9 +69,11 @@ class UserController extends Controller
         return redirect()->route("user.show-all-packages")->with("success", "");
     }
 
-    public function logout() {
-        Auth::logout();
-        return redirect('/prisijungti');
+    public function logout(Request $request) {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 
     public function authLogin(Request $request)
@@ -81,8 +83,8 @@ class UserController extends Controller
         // if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password'], 'user_role' => '1'])) {
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             // Authentication succeeded for Admin
-            // $user = Auth::user()->user_role;
-            return redirect('/home');
+            $user = Auth::user()->user_role;
+            return redirect('/');
         } else {
             // Authentication failed for Admin
             return redirect('/prisijungti')->withErrors('error', 'Invalid email or password');

@@ -20,6 +20,7 @@ class OperatorController extends Controller
         $clients = User::all();
         return view("operator.show-clients", compact('clients'));
     }
+
     public function showPackages()
     {
         $cityId = City::where('user_id', Auth::user()->id)->first()->id;
@@ -39,10 +40,12 @@ class OperatorController extends Controller
 
     public function showPackage($packageId) {
         $package = Package::where("id", $packageId)->first();
+
         $packageHistory = PackageStatus::where("package_id", $packageId)
                                         ->with(['status'])
                                         ->get();
 
+        // dd($packageHistory);
         $nextStatus = null;
         $packageStatusId = $package->status_id;
         if($packageStatusId < 4) {

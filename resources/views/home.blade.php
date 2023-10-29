@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div>Sveikas prisijunges cia pagrindinis puslapis</div>
+<header>
+    <h1>Suntų valdymo sistema "Kurjeris"</h1>
+</header>
+
+<main>
+    <h2> Autorius Adomas Poniškaitis</h2>
+</main>
 @endsection

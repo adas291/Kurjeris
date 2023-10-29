@@ -17,6 +17,7 @@ return new class extends Migration
             $table->tinyInteger('user_role');
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('gender')->nullable();
             $table->timestamps();
         });
     }

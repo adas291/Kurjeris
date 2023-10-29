@@ -12,6 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <link rel="stylesheet" href="{{asset("styles.css")}}">
 
         {{-- <link href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script> --}}
@@ -24,6 +26,9 @@
 
     </head>
     <body class="font-sans antialiased">
+
+        <x-flash-message/>
+
         <div class="min-h-screen bg-white-100 dark:bg-white-900">
             @include('layouts.navigation')
 
