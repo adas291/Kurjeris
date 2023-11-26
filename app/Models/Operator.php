@@ -21,12 +21,17 @@ class Operator extends Model
      */
     protected $fillable = [
         'user_id',
+        'street_id',
         'city_id',
     ];
 
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
+    }
+    public function street()
+    {
+        return $this->belongsTo(Street::class, 'street_id');
     }
 
     public function user()

@@ -38,6 +38,14 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label for="street" class="form-label">Gatvę</label>
+            <input type="text" name="street" class="form-control" value="{{ old('street') }}" placeholder="Miesto gatvė">
+            @error('street')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-primary">Registruoti</button>
     </form>
 </div>

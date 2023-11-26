@@ -16,15 +16,17 @@ return new class extends Migration
             $table->string('receiver_name');
             $table->string('receiver_address');
             $table->unsignedBigInteger('city_id');
+            $table->foreignId('street_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('status_id')->default('1');
+            $table->boolean('is_finished')->default(false);
             $table->index('user_id');
             $table->index('status_id');
             $table->index('city_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-
+            $table->unsignedBigInteger("weight")->nullable(false);
         });
     }
 

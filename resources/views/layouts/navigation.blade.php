@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-light nav-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Kurjeris</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -31,6 +31,7 @@
 
                     @if (auth()->check())
                     <div class="ms-auto nav-item d-flex flex-direction-row align-items-center gap-4">
+                        <i class="bi bi-person"></i>
                         <div class="nav-item ms-auto">
                             <span>{{session('role_name')}} {{ auth()->user()->name }}</span>
                         </div>
@@ -38,8 +39,8 @@
                         <div class="nav-item ms-auto">
                             <form action="{{route('user.logout')}}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-danger">Atsijungti</button>
-                            </form>
+                                <button type="submit" class="btn btn-danger d-flex "> <i class="bi bi-door-closed">Atsijungti</i> </button>
+                                </form>
                         </div>
                     </div>
                     @endif

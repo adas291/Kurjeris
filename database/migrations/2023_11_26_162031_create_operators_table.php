@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('operators', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('user_id');
-            $table->index('city_id');
-            $table->index('user_id');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('city_id')->references('id')->on('cities');
+            $table->unique(['street_id','city_id']);
+            $table->foreignId('street_id')->references('id')->on('streets');
         });
     }
 

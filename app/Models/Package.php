@@ -17,7 +17,9 @@ class Package extends Model
         'receiver_address',
         'receiver_name',
         'city_id',
-        'status_id'
+        'street_id',
+        'status_id',
+        'weight'
     ];
 
     public function user()
@@ -30,6 +32,10 @@ class Package extends Model
         return $this->belongsTo(City::class, 'city_id');
     }
 
+    public function street()
+    {
+        return $this->belongsTo(Street::class, 'street_id');
+    }
     public function status()
     {
         return $this->belongsTo(Status::class, 'status_id');

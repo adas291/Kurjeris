@@ -30,6 +30,11 @@ body {
     backdrop-filter: blur(14.2px);
     -webkit-backdrop-filter: blur(14.2px);
     border: 1px solid rgba(255, 255, 255, 0.65);
-    
+
     transition: opacity 0.5s, visibility 0.5s;
+    z-index: 9999;
+}
+
+.nav-custom {
+    background-color: rgb(255, 255, 191) !important;
 }

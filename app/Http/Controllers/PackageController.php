@@ -11,6 +11,4 @@ class PackageController extends Controller
         $packages = Package::all();
         return view("package.show-all", compact("packages"));
     }
-
-
 }

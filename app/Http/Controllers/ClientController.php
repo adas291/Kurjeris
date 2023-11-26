@@ -15,21 +15,9 @@ class ClientController extends Controller
     public function showAllPackages()
     {
         $userId = Auth::user()->id;
-        $packages = DB::select(" SELECT
-                            p.id,
-                            p.receiver_name,
-                            p.receiver_address,
-                            u.name as 'sender',
-                            c.name as 'city',
-                            s.name as 'status'
-                    FROM packages p
-                    JOIN statuses s ON s.id = p.status_id
-                    JOIN cities c ON c.id = p.city_id
-                    JOIN users u ON u.id = p.user_id
-                    WHERE p.user_id = :userId ", [$userId]);
-
-        // dd($packages);
-        return view("client.show-all", compact("packages"));
+        $packages = Package::where("user_id", $userId)->get();
+        $message = session('message'); // Retrieve the message from the session
+        return view("client.show-all", compact("packages", "message"));
     }
 
     public function showPackage($id)
@@ -40,6 +28,7 @@ class ClientController extends Controller
                         p.receiver_address,
                         u.name as 'sender',
                         c.name as 'city',
+                        p.street as 'street',
                         s.name as 'status'
                 FROM `package_statuses` ps
                 JOIN statuses s ON s.id = ps.status_id
@@ -51,16 +40,6 @@ class ClientController extends Controller
 
         return view("client.show-all", compact("packages"));
     }
-
-    // public function showUserPackages()
-    // {
-    //     $user_id = Auth::user()->id;
-    //     $packages = Package::with('user', 'city')
-    //             ->where('user_id', $user_id)
-    //             ->get();
-
-    //     return view("client.show-all", compact("packages"));
-    // }
 
     public function createPackage()
     {
@@ -75,7 +54,9 @@ class ClientController extends Controller
         $data = $request->validate([
             "receiver_address" => "required",
             "receiver_name" => "required",
-            "city_id" => "required"
+            "city_id" => "required",
+            "weight" => "required|numeric|gt:0",
+            "street_id" => "required"
         ]);
 
         // $data['sender_id'] = auth()->user()->id;
@@ -87,8 +68,7 @@ class ClientController extends Controller
             dd($e);
         }
 
-        // dd($result);
-        return redirect()->route("client.show-all-packages")->with("success", "");
+        return redirect()->route("client.show-all-packages")->with("message", "Siunta sukurta sėkmingai");
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Authenticate;
+use App\Http\Requests\StorePackageRequest;
 use App\Models\City;
 use App\Models\Package;
 use App\Models\PackageStatus;
@@ -52,21 +53,30 @@ class UserController extends Controller
 
     public function storePackage(Request $request)
     {
-        // dd($request->all());
-        $data = $request->validate([
-            "receiver_address" => "required",
-            "receiver_name" => "required",
-            "city_id" => "required"
-        ]);
+        dd($request->all());
 
-        // $data['sender_id'] = auth()->user()->id;
-        $data['user_id'] = "1";
+        // dd($data);
+        // $data = $request->validate([
+        //     "receiver_address" => "required",
+        //     "receiver_name" => "required",
+        //     "city_id" => "required",
+        //     "weight" => "required|numeric"
+        // ], [
+        //     "receiver_address.required" => "Gavėjo adresas yra būtinas",
+        //     "receiver_name.required" => "Gavėjo vardas yra būtinas",
+        //     "city_id.required" => "Pasirinkite miestą",
+        //     "weight.required" => "Įveskite siuntos svorį",
+        //     "weight.numeric" => "Suntos svoris turi būti skaičius"
+        // ]);
+
+
+        $data['sender_id'] = auth()->user()->id;
+        // $data['user_id'] = "1";
 
         $result = Package::create($data);
         PackageStatus::create(["status_id" => '1', "package_id" => $result->id]);
 
-        // dd($result);
-        return redirect()->route("user.show-all-packages")->with("success", "");
+        return redirect()->route("user.show-all-packages")->with("message", "Siunta sukurta sėkmingai");
     }
 
     public function logout(Request $request) {
@@ -78,19 +88,13 @@ class UserController extends Controller
 
     public function authLogin(Request $request)
     {
-        // Get the credentials from the request
         $credentials = $request->only('email', 'password');
-        // if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password'], 'user_role' => '1'])) {
+
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
-            // Authentication succeeded for Admin
             $user = Auth::user()->user_role;
             return redirect('/');
         } else {
-            // Authentication failed for Admin
-            return redirect('/prisijungti')->withErrors('error', 'Invalid email or password');
+            return redirect('/prisijungti')->withInput()->with('error', 'Klaidingas vartotojo slaptažodis arba paštas');
         }
     }
-
-
-
 }

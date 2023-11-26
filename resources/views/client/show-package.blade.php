@@ -12,6 +12,7 @@
             <th>Gavėjo vardas</th>
             <th>Gavėjo adresas</th>
             <th>Gavėjo miestas</th>
+            <th>Gavėjo gatvė</th>
             <th>Stausas</th>
         </tr>
 
@@ -24,6 +25,8 @@
                 <td>{{ $package->receiver_name}}</td>
                 <td>{{ $package->receiver_address}}</td>
                 <td>{{ $package->city}}</td>
+                <td>{{ $package->street}}</td>
+
                 <td>{{ $package->status}}loll</td>
             </tr>
         @endforeach

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'db849921d18e0e04f7e06d3cd740808329805139',
+        'reference' => 'e0c5c11168c4dd4ee5831974e2b9db383fd76590',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -421,7 +421,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'db849921d18e0e04f7e06d3cd740808329805139',
+            'reference' => 'e0c5c11168c4dd4ee5831974e2b9db383fd76590',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -443,12 +443,12 @@
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
-            'pretty_version' => 'v1.25.0',
-            'version' => '1.25.0.0',
+            'pretty_version' => 'v1.26.0',
+            'version' => '1.26.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/sail',
             'aliases' => array(),
-            'reference' => 'e81a7bd7ac1a745ccb25572830fecf74a89bb48a',
+            'reference' => 'c60fe037004e272efd0d81f416ed2bfc623d70b4',
             'dev_requirement' => true,
         ),
         'laravel/sanctum' => array(

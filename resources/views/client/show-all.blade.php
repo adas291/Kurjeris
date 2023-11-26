@@ -9,8 +9,10 @@
         <tr>
             <th>Nr</th>
             <th>Gavėjo vardas</th>
-            <th>Gavėjo adresas</th>
+            <th>Namo, buto, adresas</th>
             <th>Gavėjo miestas</th>
+            <th>Gavėjo gatvė</th>
+            <th>Siuntos svoris</th>
             <th>Stausas</th>
         </tr>
 
@@ -21,8 +23,10 @@
                 <td>{{ $package->id}}</td>
                 <td>{{ $package->receiver_name}}</td>
                 <td>{{ $package->receiver_address}}</td>
-                <td>{{ $package->city}}</td>
-                <td>{{ $package->status}}</td>
+                <td>{{ $package->city->name}}</td>
+                <td>{{ $package->street->name}}</td>
+                <td>{{ $package->weight}}</td>
+                <td>{{ $package->status->name}}</td>
             </tr>
         @endforeach
     </tbody>

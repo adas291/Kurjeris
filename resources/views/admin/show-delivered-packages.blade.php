@@ -11,7 +11,7 @@
                 <th>Nr.</th>
                 <th>Kliento vardas</th>
                 <th>Miestas</th>
-                <th>Trukmė(s)</th>
+                <th>Siuntimo trukmė dienomis</th>
             </tr>
         </thead>
 

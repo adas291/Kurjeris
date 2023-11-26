@@ -18,6 +18,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         gap: 2rem;
     }
 
@@ -45,12 +46,18 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <form action="{{ route('user.login-auth') }}" class="login-form" method="post">
         @csrf
         @method('post')
 
         <div class="mb-t">
-            <label for="email" class="form-label">Pastas</label>
+            <label for="email" class="form-label">Paštas</label>
             <input type="text" name="email" class="form-control" value="{{ old('email') }}"
                 placeholder="address@email.com">
             @error('name')

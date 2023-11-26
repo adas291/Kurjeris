@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->string('name');
-            $table->tinyInteger('user_role');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->timestamps();
+        Schema::create('streets', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable(false);
+            $table->foreignId('city_id')->references('id')->on('cities') ->onDelete('cascade');
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('street');
     }
 };

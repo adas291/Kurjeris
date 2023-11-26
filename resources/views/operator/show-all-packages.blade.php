@@ -12,6 +12,7 @@
                 <th>Gavejas</th>
                 <th>Adresas</th>
                 <th>Siuntejas</th>
+                <th>Miestas</th>
                 <th></th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                     <td>{{ $package->receiver_name}}</td>
                     <td>{{ $package->receiver_address}}</td>
                     <td>{{ $package->user->name}}</td>
+                    <td>{{ $package->city->name}}</td>
                     <td><a href="{{route('operator.show-package', ['id' => $package->id])}}">Keisti statusa</a></td>
                 </tr>
             @endforeach

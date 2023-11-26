@@ -8,19 +8,22 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>City</th>
+                <th>Pavadinimas</th>
+                <th>Miestas</th>
+                <th>Gatvė</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($operators as $operator)
                 <tr>
                     <td>{{ $operator->id}}</td>
-                    <td>{{ $operator->name}}</td>
-                    <td>{{ $operator->city}}</td>
+                    <td>{{ $operator->user->name}}</td>
+                    <td>{{ $operator->city->name}}</td>
+                    <td>{{ $operator->street->name}}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
 @endsection

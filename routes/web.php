@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Models\City;
+use App\Models\Street;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,15 @@ use Illuminate\Http\Request;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/getStreets/{id}', function($id) {
+    // $streets = City::where('id', $id)->(['street']);
+    $streets = Street::where('city_id', $id)->get(['id','name']);
+    // dd($streets);
+    echo json_encode($streets);
+});
+
 Route::prefix("admin")->middleware(['auth', 'role:3'])->group(function () {
     Route::get("/op", [AdminController::class, "showOperators"])->name("admin.show-operators");
     Route::get("/op/kurti", [AdminController::class, "createOperator"])->name("admin.create-operator");
